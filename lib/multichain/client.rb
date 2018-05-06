@@ -1,11 +1,19 @@
+require 'securerandom'
 module Multichain
   class Client
 
-    def initialize
-      @username = config['rpc']['user']
-      @password = config['rpc']['password']
-      @host = config['rpc']['host']
-      @port = config['rpc']['port']
+    def initialize(username, password, host, port)
+      if username.empty? || username.nil?
+        @username = config['rpc']['user']
+        @password = config['rpc']['password']
+        @host = config['rpc']['host']
+        @port = config['rpc']['port']
+      else
+        @username = username
+        @password = password
+        @host = host
+        @port = port
+      end
     end
 
     def auth
